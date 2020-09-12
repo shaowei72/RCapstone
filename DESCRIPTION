@@ -1,0 +1,23 @@
+Package: Capstone
+Type: Package
+Title: Functions for processing and visualizing NOAA earthquake dataset
+Version: 0.1.0
+Author: Shaowei
+Maintainer: Shaowei <shaowei.ying@gmail.com>
+Description: This package operates on dataset obtained from the US National Oceanographic and Armospheric Administration (NOAA). The package has several functions for processing, filtering and visualizing the NOAA dataset
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    dplyr (>= 0.4.0),
+    tidyr,
+    lubridate,
+    data.table,
+    grid,
+    ggplot2
+RoxygenNote: 7.1.0
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

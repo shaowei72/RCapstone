@@ -1,0 +1,137 @@
+---
+title: "Vignette_Capstone"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_Capstone}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Description
+
+This vignette procides an overview of the R Capstone package created for visualising NOAA earthquake data, in two ways: as a timeline using a new geom derived from ggplot2 package, and as a map using leaflet package.
+
+
+## Installation
+
+To install the package, type the following:
+
+
+```{r setup, include = FALSE, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r library, message=FALSE, warning=FALSE}
+library(devtools)
+devtools::load_all()
+
+
+library(Capstone)
+library(dplyr)
+library(ggplot2)
+library(grid)
+library(lubridate)
+library(leaflet)
+
+```
+
+## Package functions
+
+There are 5 functions in Capstone accessible for use: 
+
+1. eq_clean_data()
+2. geom_timeline()
+3. geom_timeline_label()
+4. eq_map()
+5. eq_create_label()
+
+Each of the above is described below with examples. The example NOAA data can be found in the package directory under "\data" 
+
+### eq_clean_data()
+
+Function to clean the NOAA data, specifically uniting the YEAR, MONTH and DAY columns into a Date format, converting the LATITUDE and LONGITUDE columns from character to double numeric format and stripping out the country name from the LOCATION_NAME column. The cleaned NOAA data is returned as a data frame.
+
+```{r Function1, message=FALSE, warning=FALSE}
+
+df <- Capstone::noaa.data %>% Capstone::eq_clean_data()
+
+df %>%
+  dplyr::select(date, EQ_MAG_MW, DEATHS, COUNTRY, LOCATION_NAME) %>% 
+  dplyr::filter(!is.na(EQ_MAG_MW) & !is.na(DEATHS)) %>%
+  head(n = 10) %>% 
+  print()
+
+```
+
+### geom_timeline()
+
+Creates and returns a new geom to graphically depict of timelines of earthquake events. The basic geom_timeline() geom requires clean data from the previous paragraph. The required aesthetics is x with dates, optional are y for grouping by country, and size and color that can be use according to user needs. 
+
+```{r Function2, message=FALSE, warning=FALSE}
+
+xmindate <- ymd("2000-01-01")
+xmaxdate <- ymd("2010-01-01")
+
+df %>%
+  dplyr::filter(COUNTRY %in% c("MEXICO", "INDONESIA", "CHINA")) %>%
+  ggplot(aes(x = date, y = COUNTRY, label = LOCATION_NAME,group = COUNTRY, size = EQ_MAG_MW, fill = DEATHS/1000)) +
+  geom_timeline(xmin = xmindate, xmax = xmaxdate) +
+  # geom_timeline_label(n_max = 10, xmin = xmindate) +
+  theme_classic()+ labs(y = "") +
+  theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y= element_blank())
+
+```
+
+
+### geom_timeline_label()
+
+Creates and returns a new geom to label or annotate a timeline of earthquakes. This function is used in conjunction with geom_timeline() and uses an additional aesthetic "label" for labelling the earthquakes. 
+
+```{r Function3, message=FALSE, warning=FALSE}
+
+xmindate <- ymd("1990-01-01")
+xmaxdate <- ymd("2020-01-01")
+
+df %>%
+  dplyr::filter(COUNTRY %in% c("MEXICO", "USA")) %>%
+  ggplot(aes(x = date, y = COUNTRY, label = LOCATION_NAME,group = COUNTRY, size = EQ_MAG_MW, fill = DEATHS/1000)) +
+  geom_timeline(xmin = xmindate, xmax = xmaxdate) +
+  geom_timeline_label(n_max = 10, xmin = xmindate) +
+  theme_classic()+ labs(y = "") +
+  theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y= element_blank())
+
+
+```
+
+### eq_map()
+
+Creates a geographical map using OpenStreetMap leaflet tiles to display earthquake locations based on cleaned NOAA dataset
+
+```{r Function4, message = FALSE, warning = FALSE}
+
+df %>%
+  dplyr::select(date, EQ_MAG_MW, COUNTRY, LATITUDE, LONGITUDE, TOTAL_DEATHS, LOCATION_NAME, EQ_PRIMARY) %>%
+  dplyr::filter(!is.na(EQ_PRIMARY) & !is.na(TOTAL_DEATHS)) %>%
+  dplyr::filter(COUNTRY %in% c("MEXICO", "USA", "CANADA")) %>%
+  eq_map(data = ., annot_col = "LOCATION_NAME")
+
+```
+
+
+### eq_create_label()
+
+Creates a html label for leaflet map based on location name, magnitude and casualties from NOAA earthquake data. The user can click on individual points on the interactive map to get details o fthe earthquake.
+
+```{r Function5, warning=FALSE, message=FALSE}
+
+popup_text <- eq_create_label(df)
+df %>% dplyr::filter(COUNTRY %in% c("INDONESIA", "CHINA") & lubridate::year(date) >= 2000) %>%
+  dplyr::mutate(popup_text = eq_create_label(.)) %>%
+  eq_map(annot_col = "popup_text")
+
+```
+
+
