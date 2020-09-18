@@ -19,7 +19,7 @@ Creates a html label for leaflet map based on location name, magnitude and casua
 The input \code{data.frame} needs to include columns LOCATION_NAME, EQ_PRIMARY and TOTAL_DEATHS with the earthquake location, magintude and total casualties respectively.
 }
 \examples{
-#' \dontrun{
+\dontrun{
 eq_create_label(data)
 }
 }

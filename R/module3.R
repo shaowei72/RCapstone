@@ -56,7 +56,7 @@ eq_map <- function(data, annot_col = NULL) {
 #'
 #' @export
 #' @examples
-#' #' \dontrun{
+#' \dontrun{
 #' eq_create_label(data)
 #' }
 eq_create_label <- function(data) {
