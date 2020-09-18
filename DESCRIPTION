@@ -15,6 +15,7 @@ Imports:
     data.table,
     grid,
     ggplot2,
+    devtools,
     leaflet
 RoxygenNote: 7.1.0
 Suggests: 
