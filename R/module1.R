@@ -35,7 +35,9 @@ eq_date_clean <- function(input_year, input_month, input_day) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' eq_location_clean("JORDAN:  BAB-A-DARAA,AL-KARAK")
+#' }
 #'
 eq_location_clean <- function(input_location){
   stop <- stringr::str_locate(input_location, ":")
@@ -57,7 +59,9 @@ eq_location_clean <- function(input_location){
 #' @import dplyr
 #'
 #' @examples
+#' \dontrun{
 #' eq_clean_data(noaa.data)
+#' }
 #'
 eq_clean_data <- function(raw_noaa_df) {
 

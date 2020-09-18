@@ -10,7 +10,7 @@
 #' }
 #' @source \url{http://dx.doi.org/10.7289/V5TD9V7K}
 #' @examples
-#' \dontrun {
+#' \dontrun{
 #' noaa.data
 #' }
 "noaa.data"

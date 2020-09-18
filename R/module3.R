@@ -12,7 +12,7 @@
 #' @importFrom leaflet colorFactor addTiles addCircleMarkers
 #'
 #' @examples
-#' \dontrun {
+#' \dontrun{
 #' eq_map(data, annot_col = "LOCATION_NAME")
 #' }
 eq_map <- function(data, annot_col = NULL) {
