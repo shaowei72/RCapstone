@@ -1,7 +1,6 @@
 
 #' @importFrom ggplot2 aes draw_key_point
 #' @importFrom grid pointsGrob linesGrob polylineGrob gList gpar
-#' @importFrom scales alpha
 GeomTimeline <- ggproto("GeomTimeline", Geom,
                        required_aes = c("x"),
                        default_aes = ggplot2::aes(y = 0, size = 3, colour = "grey", fill = "grey",
