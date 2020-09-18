@@ -5,7 +5,7 @@ df <- noaa.data %>% eq_clean_data()
 
 test_that("eq_map returns leaflet object", {
   map <- df %>%
-    dplyr::filter(COUNTRY == "TURKEY", YEAR > 2005) %>%
+    dplyr::filter(COUNTRY == "INDONESIA", YEAR > 2005) %>%
     eq_map(annot_col = "COUNTRY")
   expect_is(map, "leaflet")
 })
