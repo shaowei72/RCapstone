@@ -1,6 +1,7 @@
 # Capstone
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.com/shaowei72/RCapstone.svg?branch=master)](https://travis-ci.com/shaowei72/RCapstone)
 <!-- badges: end -->
 
 The goal of Capstone is to process, filter and visualize adataset obtained from the US National Oceanographic and Armospheric Administration (NOAA). This NOAA dataset contains information about significant earthquakes over time.
