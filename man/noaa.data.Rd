@@ -5,12 +5,7 @@
 \alias{noaa.data}
 \title{Significant earthquakes data.}
 \format{
-A data frame with 6205 rows and 47 variables:
-\describe{
-  \item{price}{price, in US dollars}
-  \item{carat}{weight of the diamond, in carats}
-  ...
-}
+A data frame with 6205 rows and 47 variables
 }
 \source{
 \url{http://dx.doi.org/10.7289/V5TD9V7K}
