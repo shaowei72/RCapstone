@@ -18,7 +18,7 @@ A leaflet map with earthquakes and annotations.
 Creates a geographical map using OpenStreetMap leaflet tiles to display earthquake locations based on cleaned NOAA dataset
 }
 \examples{
-\dontrun {
+\dontrun{
 eq_map(data, annot_col = "LOCATION_NAME")
 }
 }

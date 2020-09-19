@@ -68,6 +68,7 @@ GeomTimeline <- ggproto("GeomTimeline", Geom,
 #' @import ggplot2
 #'
 #' @examples
+#' \dontrun{
 #' Capstone::noaa.data %>%
 #'    Capstone::eq_clean_data() %>%
 #'    dplyr::filter(COUNTRY %in% c("MEXICO", "INDONESIA", "CHINA")) %>%
@@ -76,6 +77,7 @@ GeomTimeline <- ggproto("GeomTimeline", Geom,
 #'    geom_timeline_label(n_max = 10, xmin = xmindate) +
 #'    theme_classic()+ labs(y = "") +
 #'    theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y= element_blank())
+#' }
 #'
 
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
@@ -152,14 +154,15 @@ GeomTimeline_Label <- ggproto("GeomTimeline_Label", Geom,
 #'
 #'
 #' @examples
-#' #' Capstone::noaa.data %>%
-#'    Capstone::eq_clean_data() %>%
+#'  \dontrun{
+#' Capstone::eq_clean_data() %>%
 #'    dplyr::filter(COUNTRY %in% c("MEXICO", "INDONESIA", "CHINA")) %>%
 #'    ggplot(aes(x = date, y = COUNTRY, label = LOCATION_NAME,group = COUNTRY, size = EQ_MAG_MW, fill = DEATHS/1000)) +
 #'    geom_timeline(xmin = xmindate) +
 #'    geom_timeline_label(n_max = 10, xmin = xmindate) +
 #'    theme_classic()+ labs(y = "") +
 #'    theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y= element_blank())
+#' }
 #'
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",
                           position = "identity", na.rm = FALSE, xmin = NULL, xmax = NULL, n_max = NULL,

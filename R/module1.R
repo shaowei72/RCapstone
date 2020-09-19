@@ -10,8 +10,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' eq_date_clean(2015, 3, 30)
 #' eq_date_clean(-2249, 1, 31)
+#' }
 #'
 eq_date_clean <- function(input_year, input_month, input_day) {
   if (is.na(input_year)) return(NA)

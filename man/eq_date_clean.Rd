@@ -20,7 +20,9 @@ This function returns a Date variable
 Creates a Date variable from year, month, day where year could be positive (AD) or negative (BC)
 }
 \examples{
+\dontrun{
 eq_date_clean(2015, 3, 30)
 eq_date_clean(-2249, 1, 31)
+}
 
 }

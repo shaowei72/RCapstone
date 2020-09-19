@@ -30,13 +30,14 @@ geom_timeline_label(
 Creates a new geom to label or annotate a timeline of earthquakes
 }
 \examples{
-#' Capstone::noaa.data \%>\%
-   Capstone::eq_clean_data() \%>\%
+ \dontrun{
+Capstone::eq_clean_data() \%>\%
    dplyr::filter(COUNTRY \%in\% c("MEXICO", "INDONESIA", "CHINA")) \%>\%
    ggplot(aes(x = date, y = COUNTRY, label = LOCATION_NAME,group = COUNTRY, size = EQ_MAG_MW, fill = DEATHS/1000)) +
    geom_timeline(xmin = xmindate) +
    geom_timeline_label(n_max = 10, xmin = xmindate) +
    theme_classic()+ labs(y = "") +
    theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y= element_blank())
+}
 
 }

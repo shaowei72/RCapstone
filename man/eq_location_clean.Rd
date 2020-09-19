@@ -16,6 +16,8 @@ String with the country name stripped out and in title case
 Strips out country name (including colon) and concerts names to title case
 }
 \examples{
+\dontrun{
 eq_location_clean("JORDAN:  BAB-A-DARAA,AL-KARAK")
+}
 
 }

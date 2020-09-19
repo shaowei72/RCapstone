@@ -16,6 +16,8 @@ This function returns a dataframe with an additional column called "date" that c
 Wrapper function to clean the NOAA data, specifically uniting the YEAR, MONTH and DAY columns, converting the LATITUDE and LONGITUDE columns from character to double and stripping out the country name from the LOCATION_NAME column
 }
 \examples{
+\dontrun{
 eq_clean_data(noaa.data)
+}
 
 }

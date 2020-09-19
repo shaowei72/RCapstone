@@ -28,6 +28,7 @@ geom_timeline(
 Creates a new geom to graphically depict of timelines of earthquake events
 }
 \examples{
+\dontrun{
 Capstone::noaa.data \%>\%
    Capstone::eq_clean_data() \%>\%
    dplyr::filter(COUNTRY \%in\% c("MEXICO", "INDONESIA", "CHINA")) \%>\%
@@ -36,5 +37,6 @@ Capstone::noaa.data \%>\%
    geom_timeline_label(n_max = 10, xmin = xmindate) +
    theme_classic()+ labs(y = "") +
    theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y= element_blank())
+}
 
 }
